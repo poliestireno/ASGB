@@ -19,4 +19,7 @@
   * [Cassandra](https://cassandra.apache.org/)
   * [Amazon DynamoDB](https://aws.amazon.com/es/dynamodb/)
 * Big data y DB para protección de datos (Python)
+***
+![image1](https://github.com/user-attachments/assets/94ebdad7-a690-4ee5-b1e5-e88c24dc03f6)
+
 
