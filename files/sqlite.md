@@ -1,5 +1,6 @@
 
 # SQLite: Base de Datos Relacional
+(https://www.sqlite.org/index.html)
 
 ## 1. Introducción a SQLite
 - **Definición y Características**:
@@ -162,11 +163,32 @@
   VACUUM;
   ```
 
-- **Análisis de Consultas**:
-  SQLite permite analizar cómo se ejecutan las consultas con el comando `EXPLAIN`.
-  ```sql
-  EXPLAIN QUERY PLAN SELECT * FROM empleados WHERE nombre = 'Juan';
-  ```
+- **Análisis de Consultas EXPLAIN QUERY PLAN**
+
+`EXPLAIN QUERY` se utiliza para analizar cómo se ejecutará una consulta SQL. Proporciona un desglose del plan de ejecución que sigue la base de datos al realizar la consulta, es decir, cómo se buscarán los datos en las tablas y qué pasos se llevarán a cabo. El objetivo principal de este comando es ayudar a los desarrolladores a **optimizar sus consultas** al entender cómo funciona internamente la base de datos. Permite ver si se utilizan índices, cuántas tablas se van a escanear, si se hará un "full table scan" (es decir, recorrer toda la tabla) o si la base de datos aprovechará un índice para hacer la búsqueda más eficiente.
+
+## Ejemplo:
+Imagina que tienes la tabla `empleados` y la siguiente consulta:
+```sql
+SELECT * FROM empleados WHERE nombre = 'Juan';
+```
+
+Al ejecutar `EXPLAIN QUERY PLAN`, SQLite te devuelve información sobre el plan de ejecución, por ejemplo:
+```
+0|0|0|SCAN TABLE empleados
+```
+
+Esto significa que **SQLite realizará un escaneo completo de la tabla `empleados`** para buscar el registro donde `nombre` sea 'Juan'. Esto podría indicar que la consulta puede ser mejorada si, por ejemplo, creas un índice sobre la columna `nombre`, lo que permitiría que la búsqueda sea más rápida:
+```sql
+CREATE INDEX idx_nombre ON empleados(nombre);
+```
+
+Si después de crear el índice vuelves a ejecutar `EXPLAIN QUERY PLAN`, podrías ver algo como:
+```
+0|0|0|SEARCH TABLE empleados USING INDEX idx_nombre (nombre=?)
+```
+
+Este nuevo resultado indica que ahora la búsqueda se realizará usando el índice, lo que suele ser más rápido que un escaneo completo de la tabla.
 
 ## 5. Integración y Herramientas
 
