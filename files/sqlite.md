@@ -1,5 +1,5 @@
 
-# SQLite: Base de Datos Relacional
+# SQLite: Base de Datos Relacional pequeña pequeñita
 (https://www.sqlite.org/index.html)
 
 ## 1. Introducción a SQLite
