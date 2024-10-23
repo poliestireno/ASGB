@@ -172,7 +172,9 @@ Imagina que tienes la tabla `empleados` y la siguiente consulta:
 ```sql
 SELECT * FROM empleados WHERE nombre = 'Juan';
 ```
-
+```sql
+EXPLAIN QUERY PLAN SELECT * FROM empleados WHERE nombre = 'Juan';
+```
 Al ejecutar `EXPLAIN QUERY PLAN`, SQLite te devuelve información sobre el plan de ejecución, por ejemplo:
 ```
 0|0|0|SCAN TABLE empleados
@@ -196,7 +198,8 @@ Este nuevo resultado indica que ahora la búsqueda se realizará usando el índi
 
 - **Lenguajes de Programación**:
   SQLite puede integrarse con lenguajes como **PHP**, **Python**, **Java**, entre otros. Ejemplo en **PHP**:
-
+(verificar que en el php.ini está habilitada la extensión para sqlite ```extension=sqlite3```
+)
   ```php
   <?php
   // Conectar a la base de datos SQLite
